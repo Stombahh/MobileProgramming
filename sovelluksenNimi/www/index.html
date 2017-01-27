@@ -186,14 +186,17 @@
     
      <!----------------------- Start of panel page --------------------->
     
-    <div data-role="page" id="panel">
+<div data-role="page" id="panel">
+<div data-role="panel" id="mypanel">
+    <!-- panel content goes here -->
+</div><!-- /panel -->
 <div data-role="header">
 <a href="#main" class="ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all"></a>
 <h1>Mobiilisofta</h1>
 </div>  <!-- /header -->
 
 <div role="main" class="ui-content ui-body-a">
-    
+    <a href="#panel" class="ui-btn ui-corner-all">Etusivulle</a>
 
 </div> <!-- content -->
 
@@ -228,6 +231,9 @@ $(document).on("pagecreate", function() {
                 return contentHeight;
             }
         });
+</script>
+<script>
+$( "#mypanel" ).trigger( "updatelayout" );
 </script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
