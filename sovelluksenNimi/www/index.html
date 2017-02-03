@@ -215,10 +215,26 @@
 <h1>Mobiilisofta</h1>
 </div>  <!-- /header -->
 
-<div role="main" class="ui-content ui-body-a">
-    <p>Harjoitusteksti1</p>
+<div role="main" class="hue ui-content ui-body-a">
+    <p id="hue2">Hides if you click</p>
     <p>Harjoitusteksti2</p>
-    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn1">Nabls</button>
+    <p id="info">Info teksti</p>
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn1">Toggle text</button>
+    <br>
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn2">Toggle first text</button>
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn3">Toggle info text</button>
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn4">Change text</button>
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn5">Add more text</button>
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn6">Change text color</button>
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn7">Hides all text and button to "pressed"</button>
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn8">Opens alert with first text element</button>
+
    
 
 </div> <!-- content -->
@@ -231,10 +247,53 @@
 <script> 
       $(document).ready(function(){ 
         $("#btn1").on("click", function(){
-            $("p").toggle();
+            $("#jquery .hue p").toggle();
         });
+          
+        $("#btn2").on("click", function(){
+            $("#jquery .hue p:first").toggle();
+        });
+        
+        $("#btn3").on("click", function(){
+            $("#info").toggle();
+        });
+        
+         $("#btn4").on("click", function(){
+            $("#jquery .hue p:first").text("Alan jo oppimaan");
+        });
+        
+        $("#btn5").on("click", function(){
+            $("#jquery .hue p:first").append(", mutta matkaa on vielä.");
+        });
+          
+        $("#btn6").on("click", function(){
+            $("#jquery .hue p").css("color","red");
+        });
+        
+        $("#jquery .hue p:first").on("click", function(){
+            $("#jquery .hue p:first").hide();
+        });
+          
+        $("p").on("dblclick", function(){
+            $("#jquery .hue p").hide();
+        });
+          
+         $("#btn7").on("click", function(){
+            $("#jquery .hue p").toggle();
+             $(this).text("pressed");
+        });
+          
+         $("#btn8").on("click", function(){
+             var alertti = $("#hue2").text();
+           alert(alertti);
+        });
+
       }); 
     </script> 
+
+
+    
+    
 </body>
     
   
