@@ -39,6 +39,7 @@
 
     
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="themes/KaamosDark.min.css" />
     <script src="https://code.jquery.com/jquery-2.1.4.js"integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4="crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <title>Mobiilisofta</title>
@@ -47,7 +48,7 @@
 <body>
     
 <!-- Menu page -->
-<div data-role="page" id="main">
+<div data-role="page" id="main" data-theme="c">
 <div data-role="header">
 <a href="#main" class="ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all"></a>
 <h1>Mobiilisofta</h1>
@@ -61,6 +62,7 @@
     <li><a href="#panel">Panel</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#form">Form</a></li>
+    <li><a href="#jquery">Jquery</a></li>
 </ul>
 </div> <!-- content -->
 
@@ -70,7 +72,7 @@
 </div> <!-- /page -->
     
     <!----------------------- Start of painikkeet page --------------------->
-<div data-role="page" id="painikkeet">
+<div data-role="page" id="painikkeet" data-theme="c">
 	<div data-role="header">
         <a href="#main" class="ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all"></a>
         <h1>Mobiilisofta</h1>
@@ -206,9 +208,36 @@
 </div> <!-- /page -->
     
      <!----------------------- Start of panel page --------------------->
+    
+<div data-role="page" id="jquery" data-theme="c">
+<div data-role="header">
+<a href="#main" class="ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all"></a>
+<h1>Mobiilisofta</h1>
+</div>  <!-- /header -->
 
+<div role="main" class="ui-content ui-body-a">
+    <p>Harjoitusteksti1</p>
+    <p>Harjoitusteksti2</p>
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn1">Nabls</button>
+   
 
+</div> <!-- content -->
+
+<div data-role="footer">
+<h4>Footeri</h4>
+</div> <!-- /footer -->
+</div> <!-- /page -->
+
+<script> 
+      $(document).ready(function(){ 
+        $("#btn1").on("click", function(){
+            $("p").toggle();
+        });
+      }); 
+    </script> 
 </body>
+    
+  
    
 <script>    
 $(document).on("pagecreate", function() {
@@ -235,6 +264,7 @@ $(document).on("pagecreate", function() {
 <script>
 $( "#mypanel" ).trigger( "updatelayout" );
 </script>
+      
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript"></script>
