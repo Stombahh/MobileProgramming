@@ -39,6 +39,7 @@
 
     
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="themes/KaamosDark.min.css" />
     <script src="https://code.jquery.com/jquery-2.1.4.js"integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4="crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <title>Mobiilisofta</title>
@@ -47,7 +48,7 @@
 <body>
     
 <!-- Menu page -->
-<div data-role="page" id="main">
+<div data-role="page" id="main" data-theme="c">
 <div data-role="header">
 <a href="#main" class="ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all"></a>
 <h1>Mobiilisofta</h1>
@@ -61,6 +62,7 @@
     <li><a href="#panel">Panel</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#form">Form</a></li>
+    <li><a href="#jquery">Jquery</a></li>
 </ul>
 </div> <!-- content -->
 
@@ -70,7 +72,7 @@
 </div> <!-- /page -->
     
     <!----------------------- Start of painikkeet page --------------------->
-<div data-role="page" id="painikkeet">
+<div data-role="page" id="painikkeet" data-theme="c">
 	<div data-role="header">
         <a href="#main" class="ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all"></a>
         <h1>Mobiilisofta</h1>
@@ -207,9 +209,95 @@
 </div> <!-- /page -->
     
      <!----------------------- Start of panel page --------------------->
+    
+<div data-role="page" id="jquery" data-theme="c">
+<div data-role="header">
+<a href="#main" class="ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all"></a>
+<h1>Mobiilisofta</h1>
+</div>  <!-- /header -->
+
+<div role="main" class="hue ui-content ui-body-a">
+    <p id="hue2">Hides if you click</p>
+    <p>Harjoitusteksti2</p>
+    <p id="info">Info teksti</p>
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn1">Toggle text</button>
+    <br>
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn2">Toggle first text</button>
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn3">Toggle info text</button>
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn4">Change text</button>
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn5">Add more text</button>
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn6">Change text color</button>
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn7">Hides all text and button to "pressed"</button>
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="btn8">Opens alert with first text element</button>
+
+   
+
+</div> <!-- content -->
+
+<div data-role="footer">
+<h4>Footeri</h4>
+</div> <!-- /footer -->
+</div> <!-- /page -->
+
+<script> 
+      $(document).ready(function(){ 
+        $("#btn1").on("click", function(){
+            $("#jquery .hue p").toggle();
+        });
+          
+        $("#btn2").on("click", function(){
+            $("#jquery .hue p:first").toggle();
+        });
+        
+        $("#btn3").on("click", function(){
+            $("#info").toggle();
+        });
+        
+         $("#btn4").on("click", function(){
+            $("#jquery .hue p:first").text("Alan jo oppimaan");
+        });
+        
+        $("#btn5").on("click", function(){
+            $("#jquery .hue p:first").append(", mutta matkaa on vielä.");
+        });
+          
+        $("#btn6").on("click", function(){
+            $("#jquery .hue p").css("color","red");
+        });
+        
+        $("#jquery .hue p:first").on("click", function(){
+            $("#jquery .hue p:first").hide();
+        });
+          
+        $("p").on("dblclick", function(){
+            $("#jquery .hue p").hide();
+        });
+          
+         $("#btn7").on("click", function(){
+            $("#jquery .hue p").toggle();
+             $(this).text("pressed");
+        });
+          
+         $("#btn8").on("click", function(){
+             var alertti = $("#hue2").text();
+           alert(alertti);
+        });
+
+      }); 
+    </script> 
 
 
+    
+    
 </body>
+    
+  
    
 <script>    
 $(document).on("pagecreate", function() {
@@ -236,6 +324,7 @@ $(document).on("pagecreate", function() {
 <script>
 $( "#mypanel" ).trigger( "updatelayout" );
 </script>
+      
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript"></script>
