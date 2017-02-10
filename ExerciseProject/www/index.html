@@ -63,6 +63,8 @@
     <li><a href="#menu">Menu</a></li>
     <li><a href="#form">Form</a></li>
     <li><a href="#jquery">Jquery</a></li>
+    <li><a href="#calc">Calculator</a></li>
+    <li><a href="#valid">Validation</a></li>
 </ul>
 </div> <!-- content -->
 
@@ -208,7 +210,7 @@
 </div> <!-- /footer -->
 </div> <!-- /page -->
     
-     <!----------------------- Start of panel page --------------------->
+     <!----------------------- Start of Jquery page --------------------->
     
 <div data-role="page" id="jquery" data-theme="c">
 <div data-role="header">
@@ -291,8 +293,64 @@
 
       }); 
     </script> 
+    
+    <!----------------------- Start of Calculator page --------------------->
 
+<div data-role="page" id="calc">
+<div data-role="panel" id="mypanel">
+    <!-- panel content goes here -->
+	<a href="#mypanel" class="ui-btn ui-btn-inline ui-corner-all">Close</a>
+</div><!-- /panel -->
+<div data-role="header">
+<a href="#main" class="ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all"></a>
+<h1>Mobiilisofta</h1>
+</div>  <!-- /header -->
 
+<div role="main" class="ui-content ui-body-a">
+    
+<p id="answer">Answer:</p>
+    
+    <p>Number 1</p>
+    <input type="number" name="number" pattern="[0-9]*" value="" id="number1">
+    
+    <p>Number 2</p>
+    <input type="number" name="number" pattern="[0-9]*" value="" id="number2">
+    
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="plus">+</button>
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="minus">-</button>
+    <button class="ui-btn ui-btn-inline ui-btn-corner-all" id="reset">Reset</button>
+
+</div> <!-- content -->
+
+<div data-role="footer">
+<h4>Footeri</h4>
+</div> <!-- /footer -->
+</div> <!-- /page -->
+    
+    <script>
+    $(document).ready(function(){
+        $("#plus").click(function() {
+            var number1 = $("#number1").val();
+            var number2 = $("#number2").val();
+            var fanswer = parseInt(number1) + parseInt(number2);
+            $("#answer").append(fanswer)
+        }); 
+        
+        $("#minus").click(function() {
+            var number1 = $("#number1").val();
+            var number2 = $("#number2").val();
+            var fanswer = parseInt(number1) - parseInt(number2);
+            $("#answer").append(fanswer)
+        });
+        $("#reset").click(function() {
+            $("#answer").text("Answer:")
+        });
+    });
+</script>
+    
+    <!----------------------- Start of Validation page --------------------->
+    
+    <!-----------------------  --------------------->
     
     
 </body>
