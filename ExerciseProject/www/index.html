@@ -38,11 +38,21 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     
+    <link rel="stylesheet" href="http://dev.jtsage.com/DateBox/css/syntax.css" />
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="themes/KaamosDark.min.css" />
+    <link rel="stylesheet" href="http://cdn.jtsage.com/datebox/1.4.5/jqm-datebox-1.4.5.min.css" />
     <script src="https://code.jquery.com/jquery-2.1.4.js"integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4="crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="http://cdn.jtsage.com/external/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="http://cdn.jtsage.com/datebox/1.4.5/jqm-datebox-1.4.5.core.min.js"></script>
+<script type="text/javascript" src="http://cdn.jtsage.com/datebox/1.4.5/jqm-datebox-1.4.5.mode.calbox.min.js"></script>
+<script type="text/javascript" src="http://cdn.jtsage.com/datebox/1.4.5/jqm-datebox-1.4.5.mode.datebox.min.js"></script>
+<script type="text/javascript" src="http://cdn.jtsage.com/datebox/i18n/jqm-datebox.lang.utf8.js"></script>
+    
+     
+    <link rel="stylesheet" href="index.css" type=text/css>
     <title>Mobiilisofta</title>
 </head>
 
@@ -370,11 +380,13 @@
         <input name="username" id="username">
         <label for="email">Email:</label>
         <input name="email" id="email">
+        <label for="bdate">Birthdate</label>
+        <input name="bdate" id="bdate" type="text" data-role="datebox" data-options='{"mode":"datebox"}' />
         <label for="password">Password:</label>
         <input name="password" id="password" type="password">
         <label for="password">Confirm Password:</label>
         <input name="cfmPassword" id="cfmPassword" type="password">
-        <input class="submit" type="submit" value="Submit">
+        <button class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Submit</button>
     </fieldset>
     </form>
 
