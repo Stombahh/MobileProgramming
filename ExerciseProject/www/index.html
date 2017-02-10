@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="themes/KaamosDark.min.css" />
     <script src="https://code.jquery.com/jquery-2.1.4.js"integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4="crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
     <title>Mobiilisofta</title>
 </head>
 
@@ -349,6 +350,51 @@
 </script>
     
     <!----------------------- Start of Validation page --------------------->
+    
+    <div data-role="page" id="valid">
+<div data-role="panel" id="mypanel">
+    <!-- panel content goes here -->
+	<a href="#mypanel" class="ui-btn ui-btn-inline ui-corner-all">Close</a>
+</div><!-- /panel -->
+<div data-role="header">
+<a href="#main" class="ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all"></a>
+<h1>Mobiilisofta</h1>
+</div>  <!-- /header -->
+
+<div role="main" class="ui-content ui-body-a">
+    
+<form id="registrationForm" method="get" action="">
+    <fieldset>
+    <legend><b>Register</b></legend>
+        <label for="username">Username:</label>
+        <input name="username" id="username">
+        <label for="email">Email:</label>
+        <input name="email" id="email">
+        <label for="password">Password:</label>
+        <input name="password" id="password" type="password">
+        <label for="password">Confirm Password:</label>
+        <input name="cfmPassword" id="cfmPassword" type="password">
+        <input class="submit" type="submit" value="Submit">
+    </fieldset>
+    </form>
+
+</div> <!-- content -->
+
+<div data-role="footer">
+<h4>Footeri</h4>
+</div> <!-- /footer -->
+</div> <!-- /page -->
+
+<script>
+$("#registrationForm").validate({
+    rules: {
+        username: {required: true, minlength: 10, maxlength: 30},
+        email: {required: true, email: true},
+        password: {required: true, minlength: 6},
+        cfmPassword: {required: true, equalTo: "#password", minlength: 6}
+    }
+});
+</script>
     
     <!-----------------------  --------------------->
     
