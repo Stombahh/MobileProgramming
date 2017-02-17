@@ -100,15 +100,21 @@
 	<div data-role="page" id="etaisyysSivu" data-title="Etäisyys">
   
 	    <div role="main" class="ui-content ui-body-a">
+            
+            <label for="text-basic">Mistä:</label>
+            <input name="text-basic" id="text-basic" value="" type="text">
+            <label for="text-basic">Minne:</label>
+            <input name="text-basic" id="text-basic" value="" type="text">
+            <button class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Submit</button>
 	
 	    </div> <!-- /content -->
 
     </div> <!-- /page -->
 	
 	<div data-role="page" id="ruokaSivu" data-title="Ruoka">
-
   
 	    <div role="main" class="ui-content ui-body-a">
+            <p id="ruoka1"></p>
 
 	    </div> <!-- /content -->
 
@@ -147,7 +153,48 @@
                 $("#weather2").text("Lämpötila: " + data.main.temp +"°C");
             })
         }
-		
+        
+        $(document).on("pagecreate", "#ruokaSivu", function() {
+            fetchMenu()
+        });
+        
+        function fetchMenu(){
+            
+            $.ajax({
+                url: "http://www.amica.fi/modules/json/json/Index?costNumber=0083&language=fi",
+                dataType: "json",
+                timeout: 5000
+            })
+            .done(function(data) {
+                var lunch = data.MenusForDays[0].SetMenus;
+                var lunchTxt="";
+                for (var i = 0; i < lunch.length; i++) {
+                    lunchTxt += lunch[i].Components + "<br><br>"
+                }
+                $("#ruoka1").html(lunchTxt);
+        })
+        }
+        
+        $(document).on("pagecreate", "#etaisyysSivu", function() {
+            fetchDistance()
+        });
+        
+        function fetchDistance(){
+            
+            $.ajax({
+                url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=metrics&origins=" + mista + "&destinations=" + minne",
+                dataType: "json",
+                timeout: 5000
+            })
+            .done(function(data) {
+                var lunch = data.MenusForDays[0].SetMenus;
+                var lunchTxt="";
+                for (var i = 0; i < lunch.length; i++) {
+                    lunchTxt += lunch[i].Components + "<br><br>"
+                }
+                $("#ruoka1").html(lunchTxt);
+        })
+        }
 		
 		$(document).on("pagecreate", function() {
 
