@@ -88,7 +88,8 @@
   
 	    <div role="main" class="ui-content ui-body-a">
             
-        <img src="http://openweathermap.org/img/w/04d.png">
+        
+          <p class = 'icon'></p>
           <p id="weather1"></p>
           <p id="weather2"></p>
 	
@@ -139,11 +140,11 @@
                 timeout: 5000
             })
             .done(function(data) {
-                $("#weatherimg").attr("src", data.icon);
-                $("#weather1").text("Kaupunki:" + data.name);
-                $("#weather2").text("Lämpötila:" + data.main.temp);
-                
-                
+                var iconCode = data.weather[0].icon;
+                var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+                $(".icon").html("<img class = 'newIcon' src=" + iconUrl + ">");
+                $("#weather1").text("Kaupunki: " + data.name);
+                $("#weather2").text("Lämpötila: " + data.main.temp +"°C");
             })
         }
 		
