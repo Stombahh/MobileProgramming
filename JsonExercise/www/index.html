@@ -90,8 +90,12 @@
             
         
           <p class = 'icon'></p>
-          <p id="weather1"></p>
-          <p id="weather2"></p>
+          <p id="temp"></p>
+          <p id="wind"></p>
+          <p id="humidity"></p>
+          <p id="visibility"></p>
+          <p id="sunrise"></p>
+          <p id="sunset"></p>    
 	
 	    </div> <!-- /content -->
 
@@ -102,10 +106,11 @@
 	    <div role="main" class="ui-content ui-body-a">
             
             <label for="text-basic">Mistä:</label>
-            <input name="text-basic" id="text-basic" value="" type="text">
+            <input name="text-basic" id="mista" value="" type="text">
             <label for="text-basic">Minne:</label>
-            <input name="text-basic" id="text-basic" value="" type="text">
-            <button class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Submit</button>
+            <input name="text-basic" id="minne" value="" type="text">
+            <button class="ui-shadow ui-btn ui-corner-all ui-btn-inline" id="hae">Hae</button>
+            <p id="etaisyys"></p>
 	
 	    </div> <!-- /content -->
 
@@ -121,8 +126,9 @@
     </div> <!-- /page -->
 		
 
-<!--
+
     <script type="text/javascript" src="cordova.js"></script>
+<!--
     <script type="text/javascript" src="js/index.js"></script>
 -->
     <script type="text/javascript">
@@ -135,7 +141,9 @@
 			$("#popupMenu").enhanceWithin().popup(); // Koska on sisältöä	
 		});
         
-         $(document).on("pagecreate", "#saaSivu", function() {
+        // ------------------ Old weather solution ----------------------------------
+        
+        /* $(document).on("pagecreate", "#saaSivu", function() {
             fetchWeather()
         });
         
@@ -153,6 +161,83 @@
                 $("#weather2").text("Lämpötila: " + data.main.temp +"°C");
             })
         }
+        */
+        
+        // ---------------- New weather solution with google geolocation ---------------
+        
+        
+        $(document).on("pagecreate", "#saaSivu", function() {
+            getWeatherLocation()
+        });
+            
+        function getWeatherLocation() {
+            
+        navigator.geolocation.getCurrentPosition
+        (onWeatherSuccess, onWeatherError, { enableHighAccuracy: true });
+            
+           
+        }
+        
+            
+        // Success callback for get geo coordinates    
+        var onWeatherSuccess = function (position) {
+
+            Latitude = position.coords.latitude;
+            Longitude = position.coords.longitude;
+
+            getWeather(Latitude, Longitude);
+        }
+
+    // Get weather by using coordinates
+
+        function getWeather(latitude, longitude) {
+
+            // Get a free key at http://openweathermap.org/. Replace the "Your_Key_Here" string with that key.
+            var OpenWeatherAppKey = "8409cf6727c0194b5168093d6ba0c008";
+
+            var queryString =
+              'http://api.openweathermap.org/data/2.5/weather?&lat='
+              + latitude + '&lon=' + longitude + '&appid=' + OpenWeatherAppKey + '&units=imperial';
+
+            $.getJSON(queryString, function (results) {
+
+                if (results.weather.length) {
+
+                    $.getJSON(queryString, function (results) {
+
+                        if (results.weather.length) {
+                            
+                            
+
+                            $('#description').text(results.name);
+                            $('#temp').text("Lämpötila: " + results.main.temp +"°C");
+                            $('#wind').text("Tuuli: " + results.wind.speed +" m/s");
+                            $('#humidity').text("Kosteus: " + results.main.humidity);
+                            $('#visibility').text("Näkyvyys: " + results.weather[0].main);
+
+                            var sunriseDate = new Date(results.sys.sunrise);
+                            $('#sunrise').text("Auringonnousu: " + sunriseDate.toLocaleTimeString());
+
+                            var sunsetDate = new Date(results.sys.sunrise);
+                            $('#sunset').text("Auringonlasku: " + sunsetDate.toLocaleTimeString());
+                        }
+
+                    });
+                }
+            }).fail(function () {
+                console.log("error getting location");
+            });
+        }
+
+        // Error callback
+
+        function onWeatherError(error) {
+            console.log('code: ' + error.code + '\n' +
+                'message: ' + error.message + '\n');
+        }
+        
+        
+        // ------------------------- Fetch Amica lunch info-----------------------------
         
         $(document).on("pagecreate", "#ruokaSivu", function() {
             fetchMenu()
@@ -179,6 +264,9 @@
             fetchDistance()
         });
         
+        // ---------------------- Distance calculator -----------
+        
+        /*
         function fetchDistance(){
             
             $.ajax({
@@ -186,15 +274,19 @@
                 dataType: "json",
                 timeout: 5000
             })
+            
             .done(function(data) {
-                var lunch = data.MenusForDays[0].SetMenus;
-                var lunchTxt="";
-                for (var i = 0; i < lunch.length; i++) {
-                    lunchTxt += lunch[i].Components + "<br><br>"
-                }
-                $("#ruoka1").html(lunchTxt);
-        })
+                  var mista
+                  var minne
+                  })
+            
+            $("#etaisyys").html(etaisyysTxt);
+        
         }
+        
+        */
+        
+        //------------------------------
 		
 		$(document).on("pagecreate", function() {
 
