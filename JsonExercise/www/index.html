@@ -88,7 +88,7 @@
   
 	    <div role="main" class="ui-content ui-body-a">
             
-        
+          <p id="description"></p>
           <p class = 'icon'></p>
           <p id="temp"></p>
           <p id="wind"></p>
@@ -110,7 +110,7 @@
             <label for="text-basic">Minne:</label>
             <input name="text-basic" id="minne" value="" type="text">
             <button class="ui-shadow ui-btn ui-corner-all ui-btn-inline" id="hae">Hae</button>
-            <p id="etaisyys"></p>
+            <p id="osoite"></p>
 	
 	    </div> <!-- /content -->
 
@@ -174,11 +174,8 @@
             
         navigator.geolocation.getCurrentPosition
         (onWeatherSuccess, onWeatherError, { enableHighAccuracy: true });
-            
-           
         }
-        
-            
+
         // Success callback for get geo coordinates    
         var onWeatherSuccess = function (position) {
 
@@ -198,6 +195,7 @@
             var queryString =
               'http://api.openweathermap.org/data/2.5/weather?&lat='
               + latitude + '&lon=' + longitude + '&appid=' + OpenWeatherAppKey + '&units=imperial';
+            
 
             $.getJSON(queryString, function (results) {
 
@@ -207,8 +205,6 @@
 
                         if (results.weather.length) {
                             
-                            
-
                             $('#description').text(results.name);
                             $('#temp').text("Lämpötila: " + results.main.temp +"°C");
                             $('#wind').text("Tuuli: " + results.wind.speed +" m/s");
@@ -236,6 +232,68 @@
                 'message: ' + error.message + '\n');
         }
         
+           // ---------------------- Distance calculator -----------
+        
+        /*
+        $(document).on("pagecreate", "#etaisyysSivu", function() {
+            getDistanceLocation()
+        });
+            
+        function getDistanceLocation() {
+            
+        navigator.geolocation.getCurrentPosition
+        (onLocationSuccess, onLocationError, { enableHighAccuracy: true });
+        }
+
+        // Success callback for get geo coordinates    
+        var onLocationSuccess = function (position) {
+
+            Latitude = position.coords.latitude;
+            Longitude = position.coords.longitude;
+
+            getLocation(Latitude, Longitude);
+        }
+        
+        // Get location by using coordinates
+
+        function getLocation(latitude, longitude) {
+
+
+            var queryString =
+                'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCiHcm3BC5xqd1To3oWN5cefLsMdw5FMpU&latlng=60.172769,24.942398';
+            
+             
+            
+            $.getJSON(queryString, function (results) {
+
+                if (results.location.length) {
+
+                    $.getJSON(queryString, function (results) {
+
+                        if (results.location.length) {
+                            
+                            $('#osoite').text("Osoite on: " + results.address);
+                           
+
+                        }
+
+                    });
+                }
+            }).fail(function () {
+                console.log("error getting location");
+            });
+        }
+
+        // Error callback
+
+        function onLocationError(error) {
+            console.log('code: ' + error.code + '\n' +
+                'message: ' + error.message + '\n');
+        }
+
+        
+      */
+        
         
         // ------------------------- Fetch Amica lunch info-----------------------------
         
@@ -259,32 +317,7 @@
                 $("#ruoka1").html(lunchTxt);
         })
         }
-        
-        $(document).on("pagecreate", "#etaisyysSivu", function() {
-            fetchDistance()
-        });
-        
-        // ---------------------- Distance calculator -----------
-        
-        /*
-        function fetchDistance(){
-            
-            $.ajax({
-                url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=metrics&origins=" + mista + "&destinations=" + minne",
-                dataType: "json",
-                timeout: 5000
-            })
-            
-            .done(function(data) {
-                  var mista
-                  var minne
-                  })
-            
-            $("#etaisyys").html(etaisyysTxt);
-        
-        }
-        
-        */
+    
         
         //------------------------------
 		
